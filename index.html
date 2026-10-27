@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Now</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/JS/weather/cloud.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <header>
+
+        <div class="title">
+            <div class="logo">
+                <div class="logo-img">
+                    <img src="/JS/weather/cloud.png" alt="">
+                </div>
+                <p>Weather<span>Now</span></p>
+            </div>
+
+            <div class="nav-bar">
+                <button><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
+                    </svg></button>
+            </div>
+        </div>
+
+
+
+        <div class="search-field">
+            <input type="search" name="" id="" class="search-input" placeholder="Search for city">
+            <button class="search-button"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path
+                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                </svg></button>
+
+            <div class="searches">
+                <div class="recent-searches">
+                    <p>No recent searches</p>
+                </div>
+                <div class="matches">
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- <div class="side-bar">
+            <div class="navigation">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+                    </svg> <span>Home</span></p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5" />
+                    </svg> <span>Compare</span></p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-star-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" />
+                    </svg> <span>Favourites</span></p>
+            </div>
+
+            <div class="recent-searches">
+
+            </div>
+        </div> -->
+        <div class="main-bar">
+            <div class="weather-card">
+                <img src="/JS/weather/images.jpg" alt="" class="bg-img">
+                <div class="loading-skelenton"></div>
+                <div class="content">
+                    <div class="top">
+                        <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-geo" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 1a3 3 0 1 0 0 6 3 3 0 0 0 0-6M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.3 1.3 0 0 0-.37.265.3.3 0 0 0-.057.09V14l.002.008.016.033a.6.6 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.6.6 0 0 0 .146-.15l.015-.033L12 14v-.004a.3.3 0 0 0-.057-.09 1.3 1.3 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465s-2.462-.172-3.34-.465c-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411" />
+                            </svg> <span class="main-location"></span></p>
+                        <p class="date" style="color: white;"></p>
+                    </div>
+                    <div class="middle">
+                        <div class="image-placeholder-weather">
+                            <img src="" alt="" class="weather-img">
+                        </div>
+                        <div class="weather-contents">
+                            <h1 class="current_temp">
+
+                            </h1>
+                            <p class="weather_code">
+
+                            </p>
+                            <p class="apparent_temp_desc">Feels like <span class="apparent_temp"></span></p>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="container">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-droplet" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M7.21.8C7.69.295 8 0 8 0q.164.544.371 1.038c.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8m.413 1.021A31 31 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z" />
+                                <path fill-rule="evenodd"
+                                    d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z" />
+                            </svg>
+                            <div class="weather-content-bottom">
+                                <p>Humidity</p>
+                                <h4 class="humidity"></h4>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-wind" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5" />
+                            </svg>
+                            <div class="weather-content-bottom">
+                                <p>Wind</p>
+                                <h4 class="windspeed"></h4>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-speedometer2" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3" />
+                            </svg>
+                            <div class="weather-content-bottom">
+                                <p>Pressure</p>
+                                <h4 class="pressure"></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seven-days-forecast">
+                <p class="first-text">7-Day Forecast</p>
+                <div class="forecast">
+                    <div class="first">
+                        <h5 class="day">
+                        </h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+                    </div>
+                    <div class="second">
+                        <h5 class="day">
+                        </h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+
+                    </div>
+                    <div class="third">
+                        <h5 class="day">
+                        </h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+
+                    </div>
+                    <div class="fourth">
+                        <h5 class="day">
+                        </h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+
+                    </div>
+                    <div class="fifth">
+                        <h5 class="day">
+                        </h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+
+                    </div>
+                    <div class="sixth">
+                        <h5 class="day"></h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+
+                    </div>
+                    <div class="seventh">
+                        <h5 class="day"></h5>
+                        <p class="date"></p>
+                        <div class="weather-code-icon">
+                            <img src="" alt="" class="code-icon">
+
+                        </div>
+                        <p class="temps"><span class="temp_forecast"></span> / <span
+                                class="apparent_temp_forecast"></span>
+                        </p>
+
+                        <p class="weather_desc_forecast"></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="compare-cities">
+            <div class="heading">
+                <h3>Compare Cities</h3>
+                <p>See how the weather differs between different cities</p>
+            </div>
+            <div class="main-body">
+                <div class="city-1">
+                    <div class="location">
+                        <p class="compare-city-name"></p>
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="/JS/weather/images (1).jpg" alt="" srcset="">
+                    </div>
+                    <div class="temperature">
+                        <div class="compare-weather-icon"><img src="" alt=""></div>
+                        <div class="stats-city-1">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="city-2">
+                    <div class="location">
+                        <p class="compare-city2-name"></p>
+
+                    </div>
+                    <div class="image-placeholder">
+                        <img src="/JS/weather/images (2).jpg" alt="" srcset="">
+                    </div>
+                    <div class="temperature">
+                        <div class="compare-weather-icon-2"><img src="" alt=""></div>
+                        <div class="stats-city-2">
+                            <h4></h4>
+                            <p></p>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="footer">
+                <div>
+                    <p></p>
+                    <p class="city-1-compare"></p>
+                    <p class="city-2-compare"></p>
+                </div>
+                <div>
+                    <p>
+                        <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-droplet" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M7.21.8C7.69.295 8 0 8 0q.164.544.371 1.038c.812 1.946 2.073 3.35 3.197 4.6C12.878 7.096 14 8.345 14 10a6 6 0 0 1-12 0C2 6.668 5.58 2.517 7.21.8m.413 1.021A31 31 0 0 0 5.794 3.99c-.726.95-1.436 2.008-1.96 3.07C3.304 8.133 3 9.138 3 10a5 5 0 0 0 10 0c0-1.201-.796-2.157-2.181-3.7l-.03-.032C9.75 5.11 8.5 3.72 7.623 1.82z" />
+                                <path fill-rule="evenodd"
+                                    d="M4.553 7.776c.82-1.641 1.717-2.753 2.093-3.13l.708.708c-.29.29-1.128 1.311-1.907 2.87z" />
+                            </svg></span> Humidity
+                    </p>
+                    <p class="humidity-1"></p>
+                    <p class="humidity-2"></p>
+                </div>
+                <div>
+                    <p>
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-wind" viewBox="0 0 16 16">
+                                <path
+                                    d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5" />
+                            </svg>
+                        </span>
+                        Wind
+                    </p>
+                    <p class="wind-1"></p>
+                    <p class="wind-2"></p>
+                </div>
+                <div>
+                    <p>
+                        <span> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-speedometer2" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z" />
+                                <path fill-rule="evenodd"
+                                    d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3" />
+                            </svg></span>
+                        Pressure
+                    </p>
+                    <p class="pressure-1"></p>
+                    <p class="pressure-2"></p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <div class="compare-box">
+        <input type="search" name="" id="">
+        <button class="submit-search">Enter</button>
+        <p class="city-check"></p>
+    </div>
+    <div class="mobile-page-navbar">
+        <button class="home">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                <path
+                    d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
+            </svg>
+            <span>Home</span>
+        </button>
+        <button class="compare">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5m14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5" />
+            </svg>
+            <span>Compare</span>
+        </button>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
